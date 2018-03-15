@@ -1,0 +1,43 @@
+
+<% include header.ejs%>
+
+<link rel='stylesheet' href='/stylesheets/step03.css' />
+<script src='/javascripts/step03.js'></script>
+
+
+
+<div class="container">
+
+
+
+    	<label for="wh">WAP-html</label>
+        <textarea name="" id="wh" cols="30" rows="10">
+            <%= wap.h%>
+        </textarea>
+
+    	<label for="ws">WAP-style</label>
+        <textarea name="" id="ws" cols="30" rows="10">
+            <%= wap.s%>
+        </textarea>
+        <br>
+
+
+    	<label for="ph">PC-html</label>
+        <textarea name="" id="ph" cols="30" rows="10">
+            <%= pc.h%>
+        </textarea>
+
+    	<label for="ps">PC-style</label>
+        <textarea name="" id="ps" cols="30" rows="10">
+            <%= pc.s%>
+        </textarea>
+    	<br>
+
+
+
+</div> 
+
+<% include footer.ejs%>
+
+
+

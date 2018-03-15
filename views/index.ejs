@@ -1,0 +1,57 @@
+
+<% include header.ejs%>
+
+<link rel='stylesheet' href='/stylesheets/index.css' />
+<script src='/javascripts/index.js'></script>
+
+
+
+<div class="container">
+
+ 
+
+
+
+
+
+    <form action="/step01" method="post" enctype="multipart/form-data" >
+
+    	<label for="store_id">商家ID:</label>
+    	<input name="store_id" id="store_id" type="text"  placeholder="商家ID">
+        <span class="must_item">*</span>
+    	<br>
+    	<label for="sale_id">优惠券ID:</label>
+    	<input name="sale_id" id="sale_id" type="text"  placeholder="优惠券ID">
+        <br>
+
+    	<label for="book_target">预约目标</label>
+    	<select name="book_target" id="book_target">
+    	  <option value ="book_shop">到店</option>
+    	  <option value ="bool_party">到婚博会</option>
+    	</select>
+        <br>
+
+    	<label for="wap_init_h">WAP初始化高度:</label>
+    	<input name="wap_init_h" id="wap_init_h" type="text" value="300">
+    	<br>
+    	<label for="pc_init_h">PC初始化高度:</label>
+    	<input name="pc_init_h" id="pc_init_h" type="text" value="400">
+        <br>
+    	<label for="wap_upload">WAP图片:</label>
+    	<input name="wap_upload" id="wap_upload" type="file" placeholder="WAP图片">
+    	<br>
+    	<label for="pc_upload">PC图片:</label>
+    	<input name="pc_upload" id="pc_upload" type="file" placeholder="PC图片">
+    	<br>
+
+    </form>
+
+        <button class="submit_btn">确定</button>
+
+
+</div> 
+
+<% include footer.ejs%>
+
+
+

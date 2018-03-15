@@ -1,0 +1,37 @@
+
+<% include header.ejs%>
+
+<link rel='stylesheet' href='/stylesheets/step02.css' />
+<script src='/javascripts/step02.js'></script>
+
+
+
+<div class="container">
+
+ 
+
+
+
+
+
+    <form action="/step02" method="post" >
+
+    	<label for="wap_img_path">WAP替换图片路径</label>
+    	<input name="wap_img_path" id="wap_img_path" type="text"  placeholder="WAP路径">
+    	<br>
+    	<label for="pc_img_path">PC替换图片路径</label>
+    	<input name="pc_img_path" id="pc_img_path" type="text"  placeholder="PC路径">
+        <br>
+
+    </form>
+
+
+    <button class="submit_btn">确定</button>
+
+
+</div> 
+
+<% include footer.ejs%>
+
+
+

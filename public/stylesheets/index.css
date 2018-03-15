@@ -1,0 +1,15 @@
+
+label{
+	display: inline-block;
+	width: 80px;
+}
+select,input{
+	display: inline-block;
+	margin: 20px;
+}
+.must_item{
+	color: red;
+	font-size: 24px;
+	display: inline-block;
+	vertical-align: middle;
+}
