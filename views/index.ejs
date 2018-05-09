@@ -16,18 +16,35 @@
 
     <form action="/step01" method="post" enctype="multipart/form-data" >
 
-    	<label for="store_id">商家ID:</label>
-    	<input name="store_id" id="store_id" type="text"  placeholder="商家ID">
+    	<label for="store_id">店铺的ID:</label>
+    	<input name="store_id" id="store_id" type="text"  placeholder="店铺的ID">
         <span class="must_item">*</span>
     	<br>
-    	<label for="sale_id">优惠券ID:</label>
-    	<input name="sale_id" id="sale_id" type="text"  placeholder="优惠券ID">
+    	<label for="category_id">行业的ID:</label>
+    	<input name="category_id" id="category_id" type="text"  placeholder="行业的ID">
         <br>
 
-    	<label for="book_target">预约目标</label>
-    	<select name="book_target" id="book_target">
-    	  <option value ="book_shop">到店</option>
-    	  <option value ="bool_party">到婚博会</option>
+        <label for="subject_pc_id">PC专题的ID:</label>
+        <input name="subject_pc_id" id="subject_pc_id" type="text"  placeholder="专题的ID">
+        <br>
+
+        <label for="subject_wap_id">WAP专题的ID:</label>
+        <input name="subject_wap_id" id="subject_wap_id" type="text"  placeholder="专题的ID">
+        <br>
+
+        <label for="good_id">商品ID:</label>
+        <input name="good_id" id="good_id" type="text"  placeholder="商品ID">
+        <br>
+
+
+    	<label for="book_city">城市缩写:</label>
+    	<select name="book_city" id="book_city">
+    	  <option value ="tj">tj</option>
+          <option value ="bj">bj</option>
+          <option value ="hz">hz</option>
+          <option value ="sh">sh</option>
+          <option value ="wh">wh</option>
+    	  <option value ="gz">gz</option>
     	</select>
         <br>
 

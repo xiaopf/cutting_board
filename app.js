@@ -43,7 +43,19 @@ let pc_init_h, pc_img_h, pc_nums, pc_last_h, pc_style, pc_body, pc_img_path = ''
 
 let store_id = 0;
 let sale_id = 0;
-let book_target;
+let book_city = 'tj';
+
+let category_id = 0;
+let subject_pc_id = 0;
+let subject_wap_id = 0;
+
+
+
+
+let good_id = '';
+
+
+
 
 let wap_insert_imgs = '', pc_insert_imgs = '';
 
@@ -142,13 +154,20 @@ app.post('/step02', function(req, res, next) {
 
 app.post('/step01', multipartMiddleware, function(req, res, next) {
 
-      target = req.body.book_target;
+
 
       store_id = req.body.store_id.trim();
-      sale_id = req.body.sale_id.trim();
+
+      category_id = req.body.category_id.trim();
+
+      subject_pc_id = req.body.subject_pc_id.trim();
+      subject_wap_id = req.body.subject_wap_id.trim();
 
 
-      book_target = req.body.book_target;
+
+      good_id = req.body.good_id.trim();
+
+      book_city = req.body.book_city;
       wap_init_h = req.body.wap_init_h;
       pc_init_h = req.body.pc_init_h;
 
@@ -182,27 +201,19 @@ app.post('/step01', multipartMiddleware, function(req, res, next) {
               wap_insert_imgs += '<img src="images/bg_'+ i +'.jpg" alt="">\n';
               await cropWriteImg("./upload/wap/wap.jpg",640, wap_init_h, 0, i * wap_init_h,"./upload/wap/images/bg_" + i +".jpg");
 
-            }else{
+            }else {
 
-              wap_insert_imgs += '<img src="images/bg_'+ i +'.jpg" alt="" style="height:' + wap_last_rem + 'rem">\n';
-              await cropWriteImg("./upload/wap/wap.jpg",640, wap_last_h, 0, i * wap_init_h,"./upload/wap/images/bg_" + i +".jpg");
-
+              if(wap_last_h !== 0){
+                  wap_insert_imgs += '<img src="images/bg_'+ i +'.jpg" alt="" style="height:' + wap_last_rem + 'rem">\n';
+                  await cropWriteImg("./upload/wap/wap.jpg",640, wap_last_h, 0, i * wap_init_h,"./upload/wap/images/bg_" + i +".jpg");
+              }
               wap_style = ` *{ margin:0; padding:0}
                             img{ display:block; border:0;}
                             .w1024{ width:16rem; margin:0 auto; }
                             .w1024 img{width:16rem; height:${wap_init_h/40}rem}`;
 
-              wap_body = target === 'book_shop'?
-                          `<div class="w1024">
-                            <a href="/m/order/appoint/${store_id}/0/${ sale_id !== 0 ? '?cash_id=' + sale_id + '&from=cash' : ''}">
-                               ${wap_insert_imgs}
-                            </a>            
-                            <div style="width:16rem;height:2rem;margin:0 auto;color:white;font-size: 0.6rem;text-align: center;line-height: 2rem;background:#606370;">注：此活动与苹果公司无关</div>
-                            </div>
-                            <script>hapj(function(H){H.get('bootstrap').initAppointHbh()})</script>` 
-                            : 
-                          `<div class="w1024">
-                            <a href="/m/order/expo/appointexpo?store_id=${store_id}">
+              wap_body = `<div class="w1024">
+                            <a href="https://${book_city}.jiehun.com.cn/mobi/demand/?cate_id=${category_id}&position_name=zt_wap_${subject_wap_id}&store_id=${store_id}&product_id=${good_id}&tpl_id=1">
                                ${wap_insert_imgs}
                             </a>            
                             <div style="width:16rem;height:2rem;margin:0 auto;color:white;font-size: 0.6rem;text-align: center;line-height: 2rem;background:#606370;">注：此活动与苹果公司无关</div>
@@ -227,6 +238,11 @@ app.post('/step01', multipartMiddleware, function(req, res, next) {
 
           pc_nums = Math.floor(pc_img_h/pc_init_h);
           pc_last_h = pc_img_h - pc_init_h * pc_nums;
+
+
+          console.log(pc_last_h);
+
+
 
           pc_insert_imgs='';
 
@@ -259,8 +275,11 @@ app.post('/step01', multipartMiddleware, function(req, res, next) {
               await cropWriteImg("./upload/pc/pc.jpg",1220, pc_init_h, 350, i * pc_init_h,"./upload/pc/images/bg_" + i +".jpg");
             }else{
 
-              pc_insert_imgs += '<img src="images/bg_'+ i +'.jpg" alt="">\n';
-              await cropWriteImg("./upload/pc/pc.jpg",1220, pc_last_h, 350, i * pc_init_h,"./upload/pc/images/bg_" + i +".jpg");
+              if(pc_last_h !== 0){
+                pc_insert_imgs += '<img src="images/bg_'+ i +'.jpg" alt="">\n';
+                await cropWriteImg("./upload/pc/pc.jpg",1220, pc_last_h, 350, i * pc_init_h,"./upload/pc/images/bg_" + i +".jpg");
+              }
+
 
               pc_style = ` *{ margin:0; padding:0}
                             img{ display:block; font-size:0; border:0;}
@@ -274,25 +293,14 @@ app.post('/step01', multipartMiddleware, function(req, res, next) {
                              }
                             .w10241 {width:1220px; margin:0 auto; overflow:hidden;position:relative;}`
 
-              pc_body = target === 'book_shop'?
-
-                        `  <div class="big">
+              pc_body =  `  <div class="big">
                             <div class="w1024">
-                              <a href="/order/appoint/${store_id}/0/${ sale_id !== 0 ? '?from=cash&cash_id=' + sale_id + '&iframe=iframe' : ''}">
+                              <a href="/mall/demand/?cate_id=${category_id}&position_name=zt_pc_${subject_pc_id}&store_id=${store_id}&product_id=${good_id}&tpl_id=1">
                               ${pc_insert_imgs}
                              </a>
                             </div>
                             </div>
-                            <script>hapj(function(H){H.get('bootstrap').initAppointHbh()})</script>`  :
-
-                        `  <div class="big">
-                            <div class="w1024">
-                             <a class="appoint_product_add_button" storeid="${store_id}" onclick="return false;" href="http://tj.expo.jiehun.com.cn/" name="it's_mianfeiyuyue_e">
-                              ${pc_insert_imgs}
-                             </a>
-                            </div>
-                            </div>
-                            <script>hapj(function(H){H.get('bootstrap').initAppointHbh()})</script>`;
+                            <script>hapj(function(H){H.get('bootstrap').initAppointHbh()})</script>`
             }
           }
 
