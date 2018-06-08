@@ -155,6 +155,7 @@ app.post('/step02', function(req, res, next) {
 app.post('/step01', multipartMiddleware, function(req, res, next) {
 
 
+      img_name_pre = req.body.img_name_pre.trim();
 
       store_id = req.body.store_id.trim();
 
@@ -199,14 +200,14 @@ app.post('/step01', multipartMiddleware, function(req, res, next) {
 
             if(i < wap_nums){
 
-              wap_insert_imgs += '<img src="images/bg_'+ i +'.jpg" alt="">\n';
-              await cropWriteImg("./upload/wap/wap.jpg",wap_img_w, wap_init_h, 0, i * wap_init_h,"./upload/wap/images/bg_" + i +".jpg");
+              wap_insert_imgs += '<img src="images/'+img_name_pre+'_'+ i +'.jpg" alt="">\n';
+              await cropWriteImg("./upload/wap/wap.jpg",wap_img_w, wap_init_h, 0, i * wap_init_h,"./upload/wap/images/"+img_name_pre+"_" + i +".jpg");
 
             }else {
 
               if(wap_last_h !== 0){
-                  wap_insert_imgs += '<img src="images/bg_'+ i +'.jpg" alt="" style="height:' + wap_last_rem + 'rem">\n';
-                  await cropWriteImg("./upload/wap/wap.jpg",wap_img_w, wap_last_h, 0, i * wap_init_h,"./upload/wap/images/bg_" + i +".jpg");
+                  wap_insert_imgs += '<img src="images/'+img_name_pre+'_'+ i +'.jpg" alt="" style="height:' + wap_last_rem + 'rem">\n';
+                  await cropWriteImg("./upload/wap/wap.jpg",wap_img_w, wap_last_h, 0, i * wap_init_h,"./upload/wap/images/"+img_name_pre+"_" + i +".jpg");
               }
               wap_style = ` *{ margin:0; padding:0}
                             img{ display:block; border:0;}
@@ -256,14 +257,14 @@ app.post('/step01', multipartMiddleware, function(req, res, next) {
             await cropWriteImg("./upload/pc/pc.jpg",360, pc_img_h, 0, 0,"./upload/pc/bgbg_01.jpg");
             await cropWriteImg("./upload/pc/pc.jpg",360, pc_img_h, 1560, 0,"./upload/pc/bgbg_03.jpg");
             await addImg(1200, pc_img_h, "./upload/pc/bgbg_02.jpg");
-            await appendImg("./upload/pc/bgbg_01.jpg","./upload/pc/bgbg_02.jpg", "./upload/pc/bgbg_03.jpg","./upload/pc/images/bgbg.jpg" ,true);
+            await appendImg("./upload/pc/bgbg_01.jpg","./upload/pc/bgbg_02.jpg", "./upload/pc/bgbg_03.jpg","./upload/pc/images/bg"+img_name_pre+".jpg" ,true);
 
           }else{
 
             await cropWriteImg("./upload/pc/pc.jpg",360, pc_img_h, 0, 0,"./upload/pc/bgbg_01.jpg");
             await cropWriteImg("./upload/pc/pc.jpg",360, pc_img_h, 1560, 0,"./upload/pc/bgbg_03.jpg");
             await addImg(1200, pc_img_h, "./upload/pc/bgbg_02.jpg");
-            await appendImg("./upload/pc/bgbg_01.jpg","./upload/pc/bgbg_02.jpg", "./upload/pc/bgbg_03.jpg","./upload/pc/images/bgbg.jpg" ,true);
+            await appendImg("./upload/pc/bgbg_01.jpg","./upload/pc/bgbg_02.jpg", "./upload/pc/bgbg_03.jpg","./upload/pc/images/bg"+img_name_pre+".jpg" ,true);
 
           }
 
@@ -272,13 +273,13 @@ app.post('/step01', multipartMiddleware, function(req, res, next) {
 
             if(i < pc_nums){
 
-              pc_insert_imgs += '<img src="images/bg_'+ i +'.jpg" alt="">\n';
-              await cropWriteImg("./upload/pc/pc.jpg",1220, pc_init_h, 350, i * pc_init_h,"./upload/pc/images/bg_" + i +".jpg");
+              pc_insert_imgs += '<img src="images/'+img_name_pre+'_'+ i +'.jpg" alt="">\n';
+              await cropWriteImg("./upload/pc/pc.jpg",1220, pc_init_h, 350, i * pc_init_h,"./upload/pc/images/"+img_name_pre+"_" + i +".jpg");
             }else{
 
               if(pc_last_h !== 0){
-                pc_insert_imgs += '<img src="images/bg_'+ i +'.jpg" alt="">\n';
-                await cropWriteImg("./upload/pc/pc.jpg",1220, pc_last_h, 350, i * pc_init_h,"./upload/pc/images/bg_" + i +".jpg");
+                pc_insert_imgs += '<img src="images/'+img_name_pre+'_'+ i +'.jpg" alt="">\n';
+                await cropWriteImg("./upload/pc/pc.jpg",1220, pc_last_h, 350, i * pc_init_h,"./upload/pc/images/"+img_name_pre+"_" + i +".jpg");
               }
 
 
