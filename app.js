@@ -186,6 +186,7 @@ app.post('/step01', multipartMiddleware, function(req, res, next) {
           let size = await sizeImg("./upload/wap/wap.jpg");
 
           wap_img_h = size.height;
+          wap_img_w = size.width;
 
           wap_nums = Math.floor(wap_img_h/wap_init_h);
 
@@ -199,13 +200,13 @@ app.post('/step01', multipartMiddleware, function(req, res, next) {
             if(i < wap_nums){
 
               wap_insert_imgs += '<img src="images/bg_'+ i +'.jpg" alt="">\n';
-              await cropWriteImg("./upload/wap/wap.jpg",640, wap_init_h, 0, i * wap_init_h,"./upload/wap/images/bg_" + i +".jpg");
+              await cropWriteImg("./upload/wap/wap.jpg",wap_img_w, wap_init_h, 0, i * wap_init_h,"./upload/wap/images/bg_" + i +".jpg");
 
             }else {
 
               if(wap_last_h !== 0){
                   wap_insert_imgs += '<img src="images/bg_'+ i +'.jpg" alt="" style="height:' + wap_last_rem + 'rem">\n';
-                  await cropWriteImg("./upload/wap/wap.jpg",640, wap_last_h, 0, i * wap_init_h,"./upload/wap/images/bg_" + i +".jpg");
+                  await cropWriteImg("./upload/wap/wap.jpg",wap_img_w, wap_last_h, 0, i * wap_init_h,"./upload/wap/images/bg_" + i +".jpg");
               }
               wap_style = ` *{ margin:0; padding:0}
                             img{ display:block; border:0;}
