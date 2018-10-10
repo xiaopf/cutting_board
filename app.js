@@ -84,7 +84,9 @@ app.get('/changePath', function(req, res, next) {
 
     res.render('step02',{
       wap_url: wap_img_path.indexOf('.') > 0 ? true: false ,
-      pc_url: pc_img_path.indexOf('.') > 0 ? true : false
+      pc_url: pc_img_path.indexOf('.') > 0 ? true : false,
+      subject_pc_id : wap_img_path.indexOf('.') > 0 ? subject_pc_id: 0 ,
+      subject_wap_id : pc_img_path.indexOf('.') > 0 ? subject_wap_id : 0
     })
 
 });
