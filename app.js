@@ -37,7 +37,7 @@ app.set('view engine', 'ejs');
 
 let target;
 
-let wap_init_h, wap_img_h, wap_nums, wap_last_h, wap_last_rem, wap_style, wap_body, wap_img_path = '', wap_new_path,wap_replace_path;
+let wap_init_h, wap_img_h,wap_img_w,arg, wap_nums, wap_last_h, wap_last_rem, wap_style, wap_body, wap_img_path = '', wap_new_path,wap_replace_path;
 
 let pc_init_h, pc_img_h, pc_nums, pc_last_h, pc_style, pc_body, pc_img_path = '', pc_new_path,pc_replace_path;
 
@@ -191,10 +191,12 @@ app.post('/step01', multipartMiddleware, function(req, res, next) {
           wap_img_h = size.height;
           wap_img_w = size.width;
 
+          arg = wap_img_w == 640 ? 40 : 50;
+
           wap_nums = Math.floor(wap_img_h/wap_init_h);
 
           wap_last_h = wap_img_h - wap_init_h * wap_nums;
-          wap_last_rem = wap_last_h/40;
+          wap_last_rem = wap_last_h/arg;
 
           wap_insert_imgs = '';
 
@@ -213,14 +215,14 @@ app.post('/step01', multipartMiddleware, function(req, res, next) {
               }
               wap_style = ` *{ margin:0; padding:0}
                             img{ display:block; border:0;}
-                            .w1024{ width:16rem; margin:0 auto; }
-                            .w1024 img{width:16rem; height:${wap_init_h/40}rem}`;
+                            .w1024{ width:${wap_init_w/arg}rem; margin:0 auto; }
+                            .w1024 img{width:${wap_init_w/arg}rem; height:${wap_init_h/arg}rem}`;
 
               wap_body = `<div class="w1024">
                             <a href="https://${book_city}.jiehun.com.cn/mobi/demand/?cate_id=${category_id}&position_name=zt_wap_${subject_wap_id}&store_id=${store_id}&product_id=${good_id}&tpl_id=1">
                                ${wap_insert_imgs}
                             </a>            
-                            <div style="width:16rem;height:2rem;margin:0 auto;color:white;font-size: 0.6rem;text-align: center;line-height: 2rem;background:#606370;">注：此活动与苹果公司无关</div>
+                            <div style="width:${wap_init_w/arg}rem;height:2rem;margin:0 auto;color:white;font-size: 0.6rem;text-align: center;line-height: 2rem;background:#606370;">注：此活动与苹果公司无关</div>
                             </div>
                             <script>hapj(function(H){H.get('bootstrap').initAppointHbh()})</script>`
 
