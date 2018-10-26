@@ -215,14 +215,14 @@ app.post('/step01', multipartMiddleware, function(req, res, next) {
               }
               wap_style = ` *{ margin:0; padding:0}
                             img{ display:block; border:0;}
-                            .w1024{ width:${wap_init_w/arg}rem; margin:0 auto; }
-                            .w1024 img{width:${wap_init_w/arg}rem; height:${wap_init_h/arg}rem}`;
+                            .w1024{ width:${wap_img_w/arg}rem; margin:0 auto; }
+                            .w1024 img{width:${wap_img_w/arg}rem; height:${wap_init_h/arg}rem}`;
 
               wap_body = `<div class="w1024">
                             <a href="https://${book_city}.jiehun.com.cn/mobi/demand/?cate_id=${category_id}&position_name=zt_wap_${subject_wap_id}&store_id=${store_id}&product_id=${good_id}&tpl_id=1">
                                ${wap_insert_imgs}
                             </a>            
-                            <div style="width:${wap_init_w/arg}rem;height:2rem;margin:0 auto;color:white;font-size: 0.6rem;text-align: center;line-height: 2rem;background:#606370;">注：此活动与苹果公司无关</div>
+                            <div style="width:${wap_img_w/arg}rem;height:2rem;margin:0 auto;color:white;font-size: 0.6rem;text-align: center;line-height: 2rem;background:#606370;">注：此活动与苹果公司无关</div>
                             </div>
                             <script>hapj(function(H){H.get('bootstrap').initAppointHbh()})</script>`
 
@@ -261,7 +261,7 @@ app.post('/step01', multipartMiddleware, function(req, res, next) {
             await cropWriteImg("./upload/pc/pc.jpg",360, pc_img_h, 0, 0,"./upload/pc/bgbg_01.jpg");
             await cropWriteImg("./upload/pc/pc.jpg",360, pc_img_h, 1560, 0,"./upload/pc/bgbg_03.jpg");
             await addImg(1200, pc_img_h, "./upload/pc/bgbg_02.jpg");
-            await appendImg("./upload/pc/bgbg_01.jpg","./upload/pc/bgbg_02.jpg", "./upload/pc/bgbg_03.jpg","./upload/pc/images/bg"+img_name_pre+".jpg" ,true);
+            await appendImg("./upload/pc/bgbg_01.jpg","./upload/pc/bgbg_02.jpg", "./upload/pc/bgbg_03.jpg","./upload/pc/images/"+img_name_pre+".jpg" ,true);
 
           }else{
 
@@ -289,7 +289,7 @@ app.post('/step01', multipartMiddleware, function(req, res, next) {
 
               pc_style = ` *{ margin:0; padding:0}
                             img{ display:block; font-size:0; border:0;}
-                            .big{ width:100%; margin: 0 auto; background: #FFFFFF url(images/bgbg.jpg) no-repeat top center}
+                            .big{ width:100%; margin: 0 auto; background: #FFFFFF url(images/${img_name_pre}.jpg) no-repeat top center}
                             .w1024{ width:1220px; margin:0 auto; overflow:hidden;position:relative;}
                             a {outline: none;}
                             a:active {star:expression(this.onFocus=this.blur());}
